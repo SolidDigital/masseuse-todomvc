@@ -12,8 +12,8 @@ define(['masseuse', 'todos/options', 'todos/collection'], function(masseuse, opt
     }
 
     function keypress($event) {
-        if($event.which == 13) {
-            alert('You pressed enter!');
+        if(13 == $event.which) {
+
         }
     }
 });

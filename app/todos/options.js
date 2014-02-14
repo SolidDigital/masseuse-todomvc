@@ -1,9 +1,10 @@
-define(['text!todos/template.html'], function (template) {
+define(['text!todos/template.html', 'todos/model'], function (template, TodosModel) {
     'use strict';
 
     return {
         prependTo : 'body',
         template : template,
-        rivetsInstaUpdate : true
+        rivetsInstaUpdate : true,
+        ModelType : TodosModel
     };
 });

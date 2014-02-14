@@ -1,0 +1,45 @@
+{
+  "name": "masseuse-todomvc",
+  "description": "The best project ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pajtai/masseuse-todomvc",
+  "author": {
+    "name": "SOLID Interactive",
+    "email": "postmaster@thinksolid.com",
+    "url": "http://thinksolid.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pajtai/masseuse-todomvc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pajtai/masseuse-todomvc/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/pajtai/masseuse-todomvc/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/masseuse-todomvc",
+  "engines": {
+    "node": ">= 0.8.19"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "0.4.2",
+    "grunt-build-gh-pages": "0.1.7",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.6.0",
+    "grunt-contrib-jshint": "0.8.0",
+    "grunt-contrib-livereload": "0.1.2",
+    "grunt-contrib-requirejs": "0.4.1",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-shell": "0.6.4",
+    "matchdep": "0.3.0",
+    "mocha-phantomjs": "3.3.1"
+  },
+  "keywords": []
+}

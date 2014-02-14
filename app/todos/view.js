@@ -3,10 +3,17 @@ define(['masseuse', 'todos/options', 'todos/collection'], function(masseuse, opt
 
     return masseuse.plugins.rivets.RivetsView.extend({
         defaultOptions :  options,
-        beforeRender : beforeRender
+        beforeRender : beforeRender,
+        keypress : keypress
     });
 
     function beforeRender() {
         this.collection = TodosCollection;
+    }
+
+    function keypress($event) {
+        if($event.which == 13) {
+            alert('You pressed enter!');
+        }
     }
 });

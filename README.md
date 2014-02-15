@@ -1,24 +1,5 @@
-The best project ever.
+## masseuse-todomvc
 
-## Getting Started
-Install bower and npm dependencies using:
+_in progress_
 
-```shell
-bower install && npm install
-```
-
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
-
-## License
-Copyright (c) 2014 SOLID Interactive  
-Licensed under the MIT license.
+http://solid-interactive.github.io/masseuse-todomvc/app/

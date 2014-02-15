@@ -1,14 +1,21 @@
-define(['text!todos/template.html', 'todos/model'], function (template, TodosModel) {
+define(['text!todos/template.html'], function (template) {
     'use strict';
 
     return {
         prependTo : 'body',
         template : template,
         rivetsInstaUpdate : true,
-        ModelType : TodosModel,
+        modelData : {
+            input : {
+                title : ''
+            },
+            checkbox : {
+                checked : false
+            }
+        },
         listeners : [
             [
-                'checkbox', 'change:checked', 'toggleAll'
+                'model', 'change:checkbox', 'toggleAll'
             ]
         ]
     };

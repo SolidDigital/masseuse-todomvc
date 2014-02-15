@@ -5,6 +5,11 @@ define(['text!todos/template.html', 'todos/model'], function (template, TodosMod
         prependTo : 'body',
         template : template,
         rivetsInstaUpdate : true,
-        ModelType : TodosModel
+        ModelType : TodosModel,
+        listeners : [
+            [
+                'checkbox', 'change:checked', 'toggleAll'
+            ]
+        ]
     };
 });

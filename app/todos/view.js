@@ -3,11 +3,13 @@ define(['masseuse', 'todos/options', 'todos/collection'],
     'use strict';
 
     return masseuse.plugins.rivets.RivetsView.extend({
+        checkbox : new masseuse.MasseuseModel(),
         defaultOptions :  options,
         beforeRender : beforeRender,
         keypress : keypress,
         decorateWithAttributes : decorateWithAttributes,
-        close : close
+        close : close,
+        toggleAll : toggleAll
     });
 
     function beforeRender() {
@@ -40,5 +42,13 @@ define(['masseuse', 'todos/options', 'todos/collection'],
         } else {
             return undefined;
         }
+    }
+
+    function toggleAll(checkbox, checked) {
+        this.collection.each(function(model) {
+            model.save({
+                completed: checked
+            });
+        });
     }
 });

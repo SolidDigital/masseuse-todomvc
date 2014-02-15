@@ -4,7 +4,7 @@
         <input data-rv-value="model:title" data-rv-on-keypress="view.keypress" id="new-todo" placeholder="What needs to be done?" autofocus>
     </header>
     <section id="main">
-        <input id="toggle-all" type="checkbox">
+        <input data-rv-checked="view.checkbox:checked" id="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
             <li data-rv-class-completed="todo:completed" data-rv-each-todo="collection:"><div class="view">

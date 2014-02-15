@@ -22,6 +22,7 @@ define(['masseuse', 'todos/options', 'todos/collection'],
             model = this.decorateWithAttributes(this.model.clone());
             if (model) {
                 this.collection.add(model);
+                model.save();
                 this.model.set('title','');
             }
         }

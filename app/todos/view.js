@@ -7,7 +7,7 @@ define(['masseuse', 'todos/options', 'todos/collection'],
         defaultOptions :  options,
         beforeRender : beforeRender,
         keypress : keypress,
-        decorateWithAttributes : decorateWithAttributes,
+        newAttributes : newAttributes,
         close : close,
         toggleAll : toggleAll
     });
@@ -19,32 +19,27 @@ define(['masseuse', 'todos/options', 'todos/collection'],
     }
 
     function keypress($event) {
-        var model;
+        var title;
         if(13 == $event.which) {
-            model = this.decorateWithAttributes(this.model.clone());
-            if (model) {
-                this.collection.add(model);
-                model.save();
-                this.model.set('title','');
+            title = this.model.get('input.title').trim();
+            if (title) {
+                this.model.set('input.title', '');
+                console.log(this.collection.create(this.newAttributes(title)));
             }
         }
     }
 
     // Generate the attributes for a new Todo item.
-    function decorateWithAttributes(model) {
-        var title = this.model.get('title').trim();
-        if (title) {
-            model.set({
-                title: title,
-                order: TodosCollection.nextOrder()
-            });
-            return model;
-        } else {
-            return undefined;
-        }
+    function newAttributes(title) {
+        return {
+            title: title,
+            order: TodosCollection,
+            completed: false
+        };
     }
 
-    function toggleAll(checkbox, checked) {
+    function toggleAll(model, checkbox) {
+        var checked = checkbox.checked;
         this.collection.each(function(model) {
             model.save({
                 completed: checked

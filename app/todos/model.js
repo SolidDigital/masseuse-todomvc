@@ -14,25 +14,15 @@ define([
         },
 
         // Toggle the `completed` state of this todo item.
-        toggle: toggle,
-        save : save
+        toggle: toggle
     });
 
     return Todo;
 
     function toggle() {
+        console.log('completed is: ' + this.get('completed'));
         this.save({
             completed: !this.get('completed')
         });
-    }
-
-    function save() {
-        var title = this.attributes.title.trim();
-        console.log(arguments);
-        if (title) {
-            console.log('saving');
-            console.log(this);
-            Backbone.Model.prototype.save.call(this, {title : title});
-        }
     }
 });

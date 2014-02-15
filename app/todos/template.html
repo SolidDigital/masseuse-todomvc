@@ -8,7 +8,7 @@
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
             <li data-rv-class-completed="todo:completed" data-rv-each-todo="collection:"><div class="view">
-                <input data-rv-on-click="todo.toggle" class="toggle" type="checkbox">
+                <input data-rv-on-click="todo.toggle" data-rv-class-toggle="todo:completed" type="checkbox">
                 <label data-rv-text="todo:title"></label>
                 <button data-rv-on-click="todo.destroy" class="destroy"></button>
             </div>

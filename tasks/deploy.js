@@ -2,5 +2,5 @@
 module.exports = function(grunt) {
     'use strict';
 
-    grunt.registerTask('deploy', ['copy:app', 'build_gh_pages:gh-pages']);
+    grunt.registerTask('deploy', ['copy:app', 'build_gh_pages:gh_pages']);
 };

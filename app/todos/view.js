@@ -17,20 +17,27 @@ define(['masseuse', 'todos/options', 'todos/collection'],
     }
 
     function keypress($event) {
+        var model;
         if(13 == $event.which) {
-            this.collection.add(
-                this.decorateWithAttributes(
-                    this.model.clone()));
-            this.model.set('title','');
+            model = this.decorateWithAttributes(this.model.clone());
+            if (model) {
+                this.collection.add(model);
+                this.model.set('title','');
+            }
         }
     }
 
     // Generate the attributes for a new Todo item.
     function decorateWithAttributes(model) {
-        model.set({
-            title: this.model.get('title').trim(),
-            order: TodosCollection.nextOrder()
-        });
-        return model;
+        var title = this.model.get('title').trim();
+        if (title) {
+            model.set({
+                title: title,
+                order: TodosCollection.nextOrder()
+            });
+            return model;
+        } else {
+            return undefined;
+        }
     }
 });

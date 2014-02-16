@@ -17,6 +17,15 @@ define(['text!todos/template.html'], function (template) {
             [
                 'model', 'change:checkbox', 'toggleAll'
             ]
+        ],
+        rivetsFormatters : [
+            {
+                'filter' : function(value, key) {
+                    console.log(value);
+                    console.log(key);
+                    return key === value ? 'selected' : '';
+                }
+            }
         ]
     };
 });

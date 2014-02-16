@@ -21,9 +21,19 @@ define([
 
         // Filter down the list of all todo items that are finished.
         completed: function () {
-            this.done = this.filter(function (todo) {
+            this.done = this.getCompleted().length;
+        },
+
+        getCompleted : function () {
+            return this.filter(function (todo) {
                 return todo.get('completed');
-            }).length;
+            });
+        },
+
+        // Clear all completed todo items, destroying their models.
+        clearCompleted: function () {
+            _.invoke(this.getCompleted(), 'destroy');
+            return false;
         },
 
         // Filter down the list to only todo items that are still not finished.

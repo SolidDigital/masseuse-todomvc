@@ -2,20 +2,20 @@
 define([
     'underscore',
     'backbone',
-    'common',
     'masseuse'
-], function (_, Backbone, Common, masseuse) {
+], function (_, Backbone, masseuse) {
     'use strict';
 
     var Todo = Backbone.Model.extend({
+
         // Default attributes for the todo
         // and ensure that each todo created has `title` and `completed` keys.
         defaults: {
             title: '',
             completed: false
         },
+
         initialize : initialize,
-        // Toggle the `completed` state of this todo item.
         toggle: toggle,
         setVisibility : setVisibility
     });
@@ -27,6 +27,7 @@ define([
         this.listenTo(channels, 'filter', this.setVisibility);
     }
 
+    // Toggle the `completed` state of this todo item.
     function toggle() {
         console.log('completed is: ' + this.get('completed'));
         this.save({

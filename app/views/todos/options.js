@@ -1,4 +1,4 @@
-define(['text!todos/template.html'], function (template) {
+define(['text!views/todos/template.html', 'views/todos/formatters'], function (template, formatters) {
     'use strict';
 
     return {
@@ -18,14 +18,6 @@ define(['text!todos/template.html'], function (template) {
                 'model', 'change:checkbox', 'toggleAll'
             ]
         ],
-        rivetsFormatters : [
-            {
-                'filter' : function(value, key) {
-                    console.log(value);
-                    console.log(key);
-                    return key === value ? 'selected' : '';
-                }
-            }
-        ]
+        rivetsFormatters : [ formatters ]
     };
 });

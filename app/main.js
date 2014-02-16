@@ -24,7 +24,7 @@
     require([
         'backbone',
         'routers/router',
-        'todos/view'
+        'views/todos/view'
     ], function (Backbone, Router, Todos) {
         new Todos().start();
         new Router();

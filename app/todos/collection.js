@@ -13,6 +13,7 @@ define([
 
         initialize : function() {
             this.on('change add remove', this.remaining);
+            this.on('change add remove', this.completed);
         },
 
         // Save all of the todo items under the `"todos"` namespace.
@@ -20,14 +21,15 @@ define([
 
         // Filter down the list of all todo items that are finished.
         completed: function () {
-            return this.filter(function (todo) {
+            this.done = this.filter(function (todo) {
                 return todo.get('completed');
-            });
+            }).length;
         },
 
         // Filter down the list to only todo items that are still not finished.
         remaining: function () {
             this.leftToDo = this.without.apply(this, this.completed()).length;
+            this.items = 1 == this.leftToDo ? 'item' : 'items';
         },
 
         // We keep the Todos in sequential order, despite being saved by unordered

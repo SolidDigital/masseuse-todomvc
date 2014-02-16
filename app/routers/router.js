@@ -15,7 +15,7 @@ define([
             var channels = new masseuse.utilities.channels();
             // Trigger a collection filter event, causing hiding/unhiding
             // of the Todo view items
-            channels.trigger('filter', param || '');
+            channels.trigger('filter', param || 'all');
         }
     });
 

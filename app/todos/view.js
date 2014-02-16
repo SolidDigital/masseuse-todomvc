@@ -9,10 +9,18 @@ define(['masseuse', 'todos/options', 'todos/collection'],
         keypress : keypress,
         newAttributes : newAttributes,
         close : close,
-        toggleAll : toggleAll
+        toggleAll : toggleAll,
+        setFilter : setFilter
     });
 
+    function setFilter(filter) {
+        console.log(filter);
+        this.model.set('filter', filter);
+    }
+
     function beforeRender() {
+        this.channels = new masseuse.utilities.channels();
+        this.listenTo(this.channels, 'filter', this.setFilter);
         this.collection = TodosCollection;
         this.collection.fetch();
         window.view = this;

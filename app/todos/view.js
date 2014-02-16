@@ -33,7 +33,7 @@ define(['masseuse', 'todos/options', 'todos/collection'],
     function newAttributes(title) {
         return {
             title: title,
-            order: TodosCollection,
+            order: TodosCollection.nextOrder(),
             completed: false
         };
     }

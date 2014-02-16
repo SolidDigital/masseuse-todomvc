@@ -22,8 +22,12 @@
     });
 
     require([
+        'backbone',
+        'routers/router',
         'todos/view'
-    ], function (todos) {
-        new todos().start();
+    ], function (Backbone, Router, Todos) {
+        new Todos().start();
+        new Router();
+        Backbone.history.start();
     });
 }());

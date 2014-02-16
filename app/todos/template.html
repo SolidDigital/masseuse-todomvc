@@ -7,7 +7,7 @@
         <input data-rv-checked="model:checkbox->checked" id="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
-            <li data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
+            <li data-rv-hide="todo:isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
                 <div class="view">
                     <input data-rv-on-click="todo.toggle" class="toggle" type="checkbox">
                     <label data-rv-text="todo:title"></label>
@@ -21,7 +21,7 @@
         <span id="todo-count"><strong data-rv-text="collection.leftToDo"></strong> {{collection.items}} left</span>
         <ul id="filters">
             <li>
-                <a class="selected" href="#/">All</a>
+                <a href="#/">All</a>
             </li>
             <li>
                 <a href="#/active">Active</a>

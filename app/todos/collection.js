@@ -11,6 +11,10 @@ define([
         // Reference to this collection's model.
         model: Todo,
 
+        initialize : function() {
+            this.on('change add remove', this.remaining);
+        },
+
         // Save all of the todo items under the `"todos"` namespace.
         localStorage: new Store('todos-backbone'),
 
@@ -23,7 +27,7 @@ define([
 
         // Filter down the list to only todo items that are still not finished.
         remaining: function () {
-            return this.without.apply(this, this.completed());
+            this.leftToDo = this.without.apply(this, this.completed()).length;
         },
 
         // We keep the Todos in sequential order, despite being saved by unordered

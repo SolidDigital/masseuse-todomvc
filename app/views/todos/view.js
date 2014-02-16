@@ -14,7 +14,6 @@ define(['masseuse', 'views/todos/options', 'collections/todos'],
     });
 
     function setFilter(filter) {
-        console.log(filter);
         this.model.set('filter', filter);
     }
 
@@ -23,16 +22,17 @@ define(['masseuse', 'views/todos/options', 'collections/todos'],
         this.listenTo(this.channels, 'filter', this.setFilter);
         this.collection = TodosCollection;
         this.collection.fetch();
-        window.view = this;
     }
 
     function keypress($event) {
-        var title;
+        var title,
+            todo;
         if(13 == $event.which) {
             title = this.model.get('input.title').trim();
             if (title) {
                 this.model.set('input.title', '');
-                console.log(this.collection.create(this.newAttributes(title)));
+                todo = this.collection.create(this.newAttributes(title));
+                todo.setVisibility(this.model.get('filter'));
             }
         }
     }

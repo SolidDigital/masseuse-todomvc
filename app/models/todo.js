@@ -33,6 +33,7 @@ define([
         this.save({
             completed: !this.get('completed')
         });
+        this.setVisibility(this.get('filter'));
     }
 
     function setVisibility(filter) {
@@ -41,5 +42,6 @@ define([
                 (isCompleted && filter === 'active');
         console.log(isHidden);
         this.set('isHidden', isHidden);
+        this.set('filter',filter);
     }
 });

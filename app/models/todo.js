@@ -6,7 +6,7 @@ define([
 ], function (_, Backbone, masseuse) {
     'use strict';
 
-    var Todo = Backbone.Model.extend({
+    return Backbone.Model.extend({
 
         // Default attributes for the todo
         // and ensure that each todo created has `title` and `completed` keys.
@@ -16,31 +16,35 @@ define([
         },
 
         initialize : initialize,
-        toggle: toggle,
+        editing : editing,
+        close : close,
         setVisibility : setVisibility
     });
-
-    return Todo;
 
     function initialize() {
         var channels = new masseuse.utilities.channels();
         this.listenTo(channels, 'filter', this.setVisibility);
+        this.on('change:completed change:title', function() {
+            this.save();
+        });
     }
 
-    // Toggle the `completed` state of this todo item.
-    function toggle() {
-        console.log('completed is: ' + this.get('completed'));
-        this.save({
-            completed: !this.get('completed')
-        });
-        this.setVisibility(this.get('filter'));
+    function close() {
+        this.set('editing', false);
+        this.unset('autofocus');
+        this.save();
+    }
+
+    function editing() {
+        console.log('editing');
+        this.set('editing', true);
+        this.set('autofocus', true);
     }
 
     function setVisibility(filter) {
         var isCompleted = this.get('completed'),
             isHidden = (!isCompleted && filter === 'completed') ||
                 (isCompleted && filter === 'active');
-        console.log(isHidden);
         this.set('isHidden', isHidden);
         this.set('filter',filter);
     }

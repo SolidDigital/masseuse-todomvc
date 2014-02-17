@@ -7,13 +7,13 @@
         <input data-rv-checked="model:checkbox->checked" id="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
-            <li data-rv-hide="todo:isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
+            <li data-rv-class-editing="todo:editing" data-rv-hide="todo:isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
                 <div class="view">
                     <input data-rv-checked="todo:completed" class="toggle" type="checkbox">
-                    <label data-rv-text="todo:title"></label>
+                    <label  data-rv-on-dblclick="todo.editing" data-rv-text="todo:title"></label>
                     <button data-rv-on-click="todo.destroy" class="destroy"></button>
                 </div>
-                <input class="edit" data-rv-text="todo:title">
+                <input data-rv-on-blur="todo.close" data-rv-autofocus="model:autofocus" class="edit" data-rv-value="todo:title">
             </li>
         </ul>
     </section>

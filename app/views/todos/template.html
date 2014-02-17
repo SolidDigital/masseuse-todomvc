@@ -7,18 +7,18 @@
         <input data-rv-checked="model:checkbox->checked" id="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
-            <li data-rv-class-editing="todo:editing" data-rv-hide="todo:isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
+            <li data-rv-class-editing="todo.dom.editing" data-rv-hide="todo.dom.isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
                 <div class="view">
                     <input data-rv-checked="todo:completed" class="toggle" type="checkbox">
                     <label  data-rv-on-dblclick="todo.editing" data-rv-text="todo:title"></label>
                     <button data-rv-on-click="todo.destroy" class="destroy"></button>
                 </div>
-                <input data-rv-on-blur="todo.close" data-rv-autofocus="model:autofocus" class="edit" data-rv-value="todo:title">
+                <input data-rv-on-blur="todo.close" data-rv-autofocus="todo.dom.autofocus" class="edit" data-rv-value="todo:title">
             </li>
         </ul>
     </section>
     <footer id="footer">
-        <span id="todo-count"><strong data-rv-text="collection.leftToDo"></strong> {{collection.items}} left</span>
+        <span id="todo-count" data-rv-show="collection.leftToDo"><strong data-rv-text="collection.leftToDo"></strong> {{collection.items}} left</span>
         <ul id="filters">
             <li>
                 <a data-rv-class-selected="model:filter | filter all" href="#/">All</a>

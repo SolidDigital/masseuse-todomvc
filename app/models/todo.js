@@ -23,6 +23,7 @@ define([
 
     function initialize() {
         var channels = new masseuse.utilities.channels();
+        this.dom = {};
         this.listenTo(channels, 'filter', this.setVisibility);
         this.on('change:completed change:title', function() {
             this.save();
@@ -30,22 +31,21 @@ define([
     }
 
     function close() {
-        this.set('editing', false);
-        this.unset('autofocus');
+        this.dom.editing = false;
+        this.dom.autofocus = undefined;
         this.save();
     }
 
     function editing() {
-        console.log('editing');
-        this.set('editing', true);
-        this.set('autofocus', true);
+        console.log(arguments);
+        this.dom.editing = true;
+        this.dom.autofocus = 'autofocus';
     }
 
     function setVisibility(filter) {
-        var isCompleted = this.get('completed'),
-            isHidden = (!isCompleted && filter === 'completed') ||
-                (isCompleted && filter === 'active');
-        this.set('isHidden', isHidden);
-        this.set('filter',filter);
+        var isCompleted = this.get('completed');
+        this.dom.isHidden = (!isCompleted && filter === 'completed') ||
+            (isCompleted && filter === 'active');
+        this.dom.filter = filter;
     }
 });

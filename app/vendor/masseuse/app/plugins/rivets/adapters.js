@@ -35,6 +35,9 @@ define(['jquery', 'rivets', 'backbone'],
 
                 read : function (model, keypath) {
                     if(model instanceof Backbone.Collection) {
+                        console.log('read');
+                        console.log(model.models.length);
+                        window.latest = model.models;
                         return model.models;
                     }
                     return model.get(keypath.replace(keySeparator,'.'));

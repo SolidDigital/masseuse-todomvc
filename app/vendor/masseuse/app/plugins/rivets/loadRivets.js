@@ -10,6 +10,7 @@ define(['jquery', 'rivets', 'backbone', 'underscore'],
                 prefix : optionsForRivets.rivetsPrefix,
                 // This fires when you use data-rv-on-click.
                 handler : function(context, ev, binding) {
+                    console.log(binding.model.cid);
                     this.call(binding.model, ev, binding.view.models);
                 }
             });

@@ -18,7 +18,11 @@ define([
         initialize : initialize,
         editing : editing,
         close : close,
-        setVisibility : setVisibility
+        setVisibility : setVisibility,
+        destroy : function() {
+            console.log(this.cid);
+            Backbone.Model.prototype.destroy.apply(this, arguments);
+        }
     });
 
     function initialize() {

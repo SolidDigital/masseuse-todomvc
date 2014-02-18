@@ -17,10 +17,9 @@ define([
 
         initialize : initialize,
         editing : editing,
-        close : close,
+        close : closeModel,
         setVisibility : setVisibility,
         destroy : function() {
-            console.log(this.cid);
             Backbone.Model.prototype.destroy.apply(this, arguments);
         }
     });
@@ -34,14 +33,13 @@ define([
         });
     }
 
-    function close() {
+    function closeModel() {
         this.dom.editing = false;
         this.dom.autofocus = undefined;
         this.save();
     }
 
     function editing() {
-        console.log(arguments);
         this.dom.editing = true;
         this.dom.autofocus = 'autofocus';
     }

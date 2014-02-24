@@ -1,8 +1,10 @@
 /*global define:false*/
 define([
     'jquery', 'backbone', 'underscore', '../utilities/channels', './viewContext', './lifeCycle',
-    '../utilities/accessors', '../utilities/createOptions', '../models/masseuseModel', '../models/proxyProperty'
-], function ($, Backbone, _, Channels, ViewContext, lifeCycle, accessors, createOptions, MasseuseModel, ProxyProperty) {
+    '../utilities/accessors', '../utilities/createOptions', '../models/masseuseModel', '../models/proxyProperty',
+    '../models/observerProperty'
+], function ($, Backbone, _, Channels, ViewContext, lifeCycle, accessors, createOptions, MasseuseModel, ProxyProperty,
+    ObserverProperty) {
     'use strict';
 
     var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events',
@@ -247,7 +249,7 @@ define([
      * @param $startDeferred
      */
     function appendOrInsertView ($startDeferred) {
-        (this.appendTo || this.prependTo) ? _appendTo.call(this, $startDeferred) : _insertView.call(this, $startDeferred);
+        this.appendTo || this.prependTo ? _appendTo.call(this, $startDeferred) : _insertView.call(this, $startDeferred);
     }
 
     /**
@@ -453,19 +455,18 @@ define([
         $startDeferred && $startDeferred.notify && $startDeferred.notify(AFTER_TEMPLATING_DONE);
 
         if (this.appendTo) {
-            if (this.parent && _.isString(this.appendTo)) {
-                this.parent.$(this.appendTo).append(this.el);
-            } else {
-                $(this.appendTo).append(this.el);
-            }
+            _addViewElement.call(this, 'appendTo');
         } else if (this.prependTo) {
-            if (this.parent && _.isString(this.prependTo)) {
-                this.parent.$(this.prependTo).prepend(this.el);
-            } else {
-                $(this.prependTo).prepend(this.el);
-            }
+            _addViewElement.call(this, 'prependTo');
         }
+    }
 
+    function _addViewElement (action) {
+        if (this.parent && _.isString(this[action])) {
+            $(this.el)[action](this.parent.$(this[action]));
+        } else {
+            $(this.el)[action]($(this[action]));
+        }
     }
 
     function _insertView ($startDeferred) {
@@ -496,7 +497,7 @@ define([
                 if (datum instanceof ViewContext) {
                     modelData[key] = datum.getBoundFunction(self);
                 }
-                if (datum instanceof ProxyProperty) {
+                if (datum instanceof ProxyProperty || datum instanceof ObserverProperty) {
                     if (datum.model instanceof ViewContext) {
                         datum.model = datum.model.getBoundFunction(self);
                     }

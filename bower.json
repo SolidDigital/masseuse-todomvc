@@ -1,13 +1,15 @@
 {
-    "name": "masseuse-todomvc",
-    "dependencies": {
-        "masseuse" : "1.11.2",
-        "requirejs-text": "2.0.10"
-    },
-    "devDependencies": {
-        "mocha": "1.17.1",
-        "chai": "1.8.1",
-        "sinon": "1.7.3",
-        "sinon-chai": "2.5.0"
-    }
+  "name": "masseuse-todomvc",
+  "dependencies": {
+    "masseuse": "1.11.2",
+    "requirejs-text": "2.0.10",
+    "todomvc-common": "~0.1.9",
+    "backbone.localStorage": "~1.1.7"
+  },
+  "devDependencies": {
+    "mocha": "1.17.1",
+    "chai": "1.8.1",
+    "sinon": "1.7.3",
+    "sinon-chai": "2.5.0"
+  }
 }

@@ -17,7 +17,7 @@
             }
         },
         paths : {
-            jquery : '../app/vendor/jquery/jquery',
+            jquery : '../app/vendor/jquery/dist/jquery',
             rivets : '../app/vendor/rivets/dist/rivets',
             backbone : '../app/vendor/backbone-amd/backbone',
             text : '../app/vendor/requirejs-text/text',
@@ -49,11 +49,13 @@
         './models/masseuseModelTests',
         './models/computedPropertyTests',
         './models/proxyPropertyTests',
+        './models/observerPropertyTests',
         './plugins/rivets/viewTests',
         './plugins/rivets/rivetsBackBoneCollectionsTests',
         './plugins/rivets/collectionWithMasseuseModelsTests',
         './plugins/rivets/componentsTest',
         './plugins/rivets/binderTests',
+        './plugins/rivets/formattersTests',
         './utilities/channelsTests',
         './utilities/createOptionsTests',
         './utilities/deferMethodTests',

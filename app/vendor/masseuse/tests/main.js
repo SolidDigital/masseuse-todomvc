@@ -11,9 +11,17 @@
             sinon : {
                 exports : 'sinon'
             },
+            sinonCall : {
+                deps : ['sinon'],
+                exports : 'sinonCall'
+            },
             sinonSpy : {
                 deps : ['sinonCall'],
                 exports : 'sinonSpy'
+            },
+            sinonStub : {
+                deps : ['sinonCall'],
+                exports : 'sinonStub'
             }
         },
         paths : {
@@ -27,6 +35,7 @@
             sinonSpy : '../app/vendor/sinon/lib/sinon/spy',
             sinonChai : '../app/vendor/sinon-chai/lib/sinon-chai',
             sinonCall : '../app/vendor/sinon/lib/sinon/call',
+            sinonStub : '../app/vendor/sinon/lib/sinon/stub',
             check : './check'
         },
         packages : [
@@ -43,6 +52,7 @@
 
     require([
         'mocha',
+        './package/packageTests',
         './views/baseViewTests',
         './views/lifeCycleTests',
         './views/viewContextTests',
@@ -50,6 +60,7 @@
         './models/computedPropertyTests',
         './models/proxyPropertyTests',
         './models/observerPropertyTests',
+        './collections/masseuseCollectionTests',
         './plugins/rivets/viewTests',
         './plugins/rivets/rivetsBackBoneCollectionsTests',
         './plugins/rivets/collectionWithMasseuseModelsTests',

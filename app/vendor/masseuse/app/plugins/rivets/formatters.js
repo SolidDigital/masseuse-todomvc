@@ -2,9 +2,11 @@ define(['underscore'], function (_) {
     'use strict';
 
     return {
+        _: _formatter,
         and: and,
         booleantoenabled : booleantoenabled,
-        dollars: dollars,
+        centsToDollars: centsToDollars,
+        asDollars : asDollars,
         equals: equals,
         existsOr: existsOr,
         humanize: {
@@ -30,6 +32,10 @@ define(['underscore'], function (_) {
         withComma : withComma,
         withForwardSlash: withForwardSlash
     };
+
+    function _formatter(value, arg) {
+        return _[arg](value);
+    }
 
     function withComma(value) {
         return value + ', ';
@@ -107,8 +113,12 @@ define(['underscore'], function (_) {
         return time.join(' ');
     }
 
-    function dollars(amount) {
+    function centsToDollars(amount) {
         return '$' + ((amount / 100).toFixed(2));
+    }
+
+    function asDollars(amount) {
+        return '$' + amount.toFixed(2);
     }
 
     function equals(value, args) {

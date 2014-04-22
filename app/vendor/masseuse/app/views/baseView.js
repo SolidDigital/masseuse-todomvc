@@ -1,4 +1,3 @@
-/*global define:false*/
 define([
     'jquery', 'backbone', 'underscore', '../utilities/channels', './viewContext', './lifeCycle',
     '../utilities/accessors', '../utilities/createOptions', '../models/masseuseModel', '../models/proxyProperty',
@@ -65,6 +64,7 @@ define([
             addChildren : addChildren,
             removeChild : removeChild,
             refresh : refresh,
+            restart : refresh,
             refreshChildren : refreshChildren,
             removeAllChildren : removeAllChildren,
             appendOrInsertView : appendOrInsertView
@@ -224,9 +224,21 @@ define([
      * @returns {jQuery.promise} A promise that is resolved when when the start method has completed
      */
     function start ($parentRenderPromise) {
-        var $deferred = new $.Deferred();
+        var self = this,
+            $deferred;
+
+        if (this.$startPromise) {
+            return this.$startPromise;
+        }
+
+        $deferred = new $.Deferred();
+        $deferred.done(function() {
+            self.hasStarted = true;
+        });
+
+        this.$startPromise = $deferred.promise();
         lifeCycle.runAllMethods.call(this, $deferred, $parentRenderPromise);
-        return $deferred.promise();
+        return this.$startPromise;
     }
 
     /**
@@ -234,14 +246,7 @@ define([
      */
     function render () {
         this.appendOrInsertView(arguments[arguments.length - 1]);
-
         this.elementCache = _.memoize(elementCache.bind(this));
-
-        _(this.children).each(function(child) {
-            if (child.hasStarted) {
-                child.render();
-            }
-        });
     }
 
     /**
@@ -379,6 +384,9 @@ define([
         if (!_(this.children).contains(childView)) {
             this.children.push(child = childView);
             childView.parent = this;
+            if(this.hasStarted && !childView.hasStarted) {
+                childView.start();
+            }
         }
         return child;
     }
@@ -410,6 +418,8 @@ define([
     function refresh () {
         if (this.hasStarted) {
             Backbone.View.prototype.remove.apply(this);
+            delete this.hasStarted;
+            delete this.$startPromise;
         }
         return this.start();
     }

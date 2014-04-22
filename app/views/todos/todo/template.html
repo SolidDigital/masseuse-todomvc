@@ -1,0 +1,8 @@
+<li data-rv-class-editing="todo:dom->editing" data-rv-hide="todo:dom->isHidden" data-rv-class-completed="todo:completed" data-rv-each-todo="collection:">
+    <div class="view">
+        <input data-rv-checked="todo:completed" class="toggle" type="checkbox">
+        <label  data-rv-on-dblclick="todo.editing" data-rv-text="todo:title"></label>
+        <button data-rv-on-click="todo.destroy" class="destroy"></button>
+    </div>
+    <input data-rv-on-blur="todo.close" data-rv-autofocus="todo:dom->autofocus" class="edit" data-rv-value="todo:title">
+</li>

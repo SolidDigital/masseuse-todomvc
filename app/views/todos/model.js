@@ -1,32 +1,34 @@
 /*global define*/
 define([
     'underscore',
-    'backbone',
     'masseuse'
-], function (_, Backbone, masseuse) {
+], function (_, masseuse) {
     'use strict';
 
-    return Backbone.Model.extend({
+    var fromServer = function() {
+        return {
+            title: '',
+            completed: false
+        };
+    };
+
+    return masseuse.Model.extend({
 
         // Default attributes for the todo
         // and ensure that each todo created has `title` and `completed` keys.
-        defaults: {
-            title: '',
-            completed: false
-        },
+        defaults: _.extend(fromServer(), {
+            dom: null
+        }),
 
         initialize : initialize,
         editing : editing,
         close : closeModel,
         setVisibility : setVisibility,
-        destroy : function() {
-            Backbone.Model.prototype.destroy.apply(this, arguments);
-        }
+        toJSON : toJSON
     });
 
     function initialize() {
         var channels = new masseuse.utilities.channels();
-        this.dom = {};
         this.listenTo(channels, 'filter', this.setVisibility);
         this.on('change:completed change:title', function() {
             this.save();
@@ -34,20 +36,24 @@ define([
     }
 
     function closeModel() {
-        this.dom.editing = false;
-        this.dom.autofocus = undefined;
+        this.set('dom.editing', false);
+        this.set('dom.autofocus', undefined);
         this.save();
     }
 
     function editing() {
-        this.dom.editing = true;
-        this.dom.autofocus = 'autofocus';
+        this.set('dom.editing', true);
+        this.set('dom.autofocus', 'autofocus');
     }
 
     function setVisibility(filter) {
         var isCompleted = this.get('completed');
-        this.dom.isHidden = (!isCompleted && filter === 'completed') ||
-            (isCompleted && filter === 'active');
-        this.dom.filter = filter;
+        this.set('dom.isHidden', (!isCompleted && filter === 'completed') ||
+            (isCompleted && filter === 'active'));
+        this.set('dom.filter', filter);
+    }
+
+    function toJSON() {
+        return _.pick(this.attributes, _.keys(fromServer()));
     }
 });

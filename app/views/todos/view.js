@@ -1,4 +1,4 @@
-define(['masseuse', 'views/todos/options', 'collections/todos'],
+define(['masseuse', 'todos/options', 'collections/todos'],
     function(masseuse, options, TodosCollection) {
     'use strict';
 

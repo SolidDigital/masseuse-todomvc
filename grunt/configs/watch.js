@@ -9,6 +9,7 @@ module.exports = function(grunt) {
             },
             files : [
                 'app/**/*.js',
+                'app/**/*.html',
                 '!app/vendor/**'
             ],
             tasks : [

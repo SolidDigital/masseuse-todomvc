@@ -10,6 +10,6 @@ module.exports = function (grunt) {
         pkg : grunt.file.readJSON('package.json')
     });
 
-    grunt.loadTasks('task-configs');
-    grunt.loadTasks('tasks');
+    grunt.loadTasks('grunt/configs');
+    grunt.loadTasks('grunt/tasks');
 };

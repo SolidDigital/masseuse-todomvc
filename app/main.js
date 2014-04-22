@@ -7,7 +7,8 @@
             rivets : 'vendor/rivets/dist/rivets',
             backbone : 'vendor/backbone-amd/backbone',
             backboneLocalstorage: 'vendor/backbone.localStorage/backbone.localStorage',
-            text : 'vendor/requirejs-text/text'
+            text : 'vendor/requirejs-text/text',
+            todos : 'views/todos'
         },
         packages : [
             {

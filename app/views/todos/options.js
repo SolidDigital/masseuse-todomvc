@@ -1,10 +1,9 @@
-define(['text!views/todos/template.html', 'views/todos/formatters'], function (template, formatters) {
+define(['text!todos/template.html', 'todos/formatters', 'todos/todo/view'], function (template, formatters, TodoView) {
     'use strict';
 
     return {
         prependTo : 'body',
         template : template,
-        rivetsInstaUpdate : true,
         modelData : {
             input : {
                 title : ''
@@ -18,6 +17,12 @@ define(['text!views/todos/template.html', 'views/todos/formatters'], function (t
                 'model', 'change:checkbox', 'toggleAll'
             ]
         ],
-        rivetsFormatters : [ formatters ]
+        rivetsConfig : {
+            instaUpdate : true,
+            formatters : [ formatters ],
+            childViewBinders : {
+                'todo-list-view' : TodoView
+            }
+        }
     };
 });

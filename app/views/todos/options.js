@@ -1,4 +1,5 @@
-define(['text!todos/template.html', 'todos/formatters', 'todos/todo/view'], function (template, formatters, TodoView) {
+define(['text!todos/template.html', 'todos/formatters', 'todos/todoListView/view'],
+    function (template, formatters, TodoView) {
     'use strict';
 
     return {

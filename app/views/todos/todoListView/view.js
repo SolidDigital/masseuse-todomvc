@@ -1,4 +1,4 @@
-define(['masseuse', 'todos/todo/options'],
+define(['masseuse', 'todos/todoListView/options'],
     function(masseuse, options) {
     'use strict';
 

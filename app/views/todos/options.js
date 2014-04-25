@@ -1,5 +1,5 @@
-define(['text!todos/template.html', 'todos/formatters', 'todos/todoListView/view'],
-    function (template, formatters, TodoView) {
+define(['text!todos/template.html', 'todos/formatters', 'todos/todoView/view', 'todos/toggleAll/view'],
+    function (template, formatters, TodoView, ToggleAllView) {
     'use strict';
 
     return {
@@ -8,21 +8,19 @@ define(['text!todos/template.html', 'todos/formatters', 'todos/todoListView/view
         modelData : {
             input : {
                 title : ''
-            },
-            checkbox : {
-                checked : false
             }
         },
         listeners : [
             [
-                'model', 'change:checkbox', 'toggleAll'
+                'model', 'change', 'toggleAll'
             ]
         ],
         rivetsConfig : {
             instaUpdate : true,
             formatters : [ formatters ],
             childViewBinders : {
-                'todo-list-view' : TodoView
+                'todo-view' : TodoView,
+                'toggle-all-view' : ToggleAllView
             }
         }
     };

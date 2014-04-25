@@ -1,0 +1,8 @@
+<li data-rv-class-editing="model:dom->editing" data-rv-hide="model:dom->isHidden" data-rv-class-completed="model:completed">
+    <div class="view">
+        <input data-rv-checked="model:completed" class="toggle" type="checkbox">
+        <label  data-rv-on-dblclick="model.editing" data-rv-text="model:title"></label>
+        <button data-rv-on-click="model.destroy" class="destroy"></button>
+    </div>
+    <input data-rv-on-blur="model.close" data-rv-autofocus="model:dom->autofocus" class="edit" data-rv-value="model:title">
+</li>

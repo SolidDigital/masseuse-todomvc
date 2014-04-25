@@ -2,7 +2,7 @@
   "name": "todomvc-masseuse-backbone-requirejs",
   "version": "0.0.0",
   "dependencies": {
-    "masseuse": "2.2.1",
+    "masseuse": "3.0.0-alpha1 ",
     "todomvc-common": "~0.1.4",
     "backbone.localStorage": "~1.1.0",
     "requirejs-text": "2.0.11"

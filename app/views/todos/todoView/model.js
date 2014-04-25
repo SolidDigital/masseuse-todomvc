@@ -7,6 +7,7 @@ define([
 
     var fromServer = function() {
         return {
+            id : undefined,
             title: '',
             completed: false
         };
@@ -28,7 +29,7 @@ define([
     });
 
     function initialize() {
-        var channels = new masseuse.utilities.channels();
+        var channels = new masseuse.channels();
         this.listenTo(channels, 'filter', this.setVisibility);
         this.on('change:completed change:title', function() {
             this.save();

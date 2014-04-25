@@ -1,9 +1,8 @@
-define(['masseuse', 'todos/options', 'todos/collection'],
-    function(masseuse, options, TodosCollection) {
+define(['masseuse', 'todos/options', 'todos/collection', 'todos/toggleAll/model'],
+    function(masseuse, options, TodosCollection, ToggleAllModel) {
     'use strict';
 
     return masseuse.plugins.rivets.RivetsView.extend({
-        checkbox : new masseuse.MasseuseModel(),
         defaultOptions :  options,
         beforeRender : beforeRender,
         keypress : keypress,
@@ -18,10 +17,11 @@ define(['masseuse', 'todos/options', 'todos/collection'],
     }
 
     function beforeRender() {
-        this.channels = new masseuse.utilities.channels();
+        this.channels = new masseuse.channels();
         this.listenTo(this.channels, 'filter', this.setFilter);
         this.collection = TodosCollection;
         this.collection.fetch();
+        this.model.set('checkbox', new ToggleAllModel());
     }
 
     function keypress($event) {
@@ -31,6 +31,7 @@ define(['masseuse', 'todos/options', 'todos/collection'],
             title = this.model.get('input.title').trim();
             if (title) {
                 this.model.set('input.title', '');
+                console.log('creating new model');
                 todo = this.collection.create(this.newAttributes(title));
                 todo.setVisibility(this.model.get('filter'));
             }
@@ -39,6 +40,7 @@ define(['masseuse', 'todos/options', 'todos/collection'],
 
     // Generate the attributes for a new Todo item.
     function newAttributes(title) {
+        console.log('boom');
         return {
             title: title,
             order: TodosCollection.nextOrder(),
@@ -46,8 +48,8 @@ define(['masseuse', 'todos/options', 'todos/collection'],
         };
     }
 
-    function toggleAll(model, checkbox) {
-        var checked = checkbox.checked;
+    function toggleAll() {
+        var checked = this.model.get('checkbox.checked');
         this.collection.each(function(model) {
             model.save({
                 completed: checked

@@ -4,9 +4,10 @@
         <input data-rv-value="model:input->title" data-rv-on-keypress="view.keypress" id="new-todo" placeholder="What needs to be done?" autofocus>
     </header>
     <section id="main">
-        <input data-rv-checked="model:checkbox->checked" id="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
-        <ul id="todo-list" data-rv-new-todo-list-view="collection"></ul>
+        <section data-rv-new-toggle-all-view="model:checkbox"></section>
+        <ul id="todo-list">
+            <li data-rv-new-todo-view="todo" data-rv-each-todo="collection:"></li>
+        </ul>
     </section>
     <footer id="footer">
         <span id="todo-count" data-rv-show="collection.leftToDo"><strong data-rv-text="collection.leftToDo"></strong> {{collection.items}} left</span>
